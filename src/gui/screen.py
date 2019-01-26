@@ -25,8 +25,13 @@ class Screen:
 		self.__scene.draw(self)
 		pygame.display.flip()
 
+<<<<<<< HEAD
 	def tick(self, dt):
 		self.__scene.tick(dt)
+=======
+	def update(self, dt):
+#		self.__scene.update(dt)
+>>>>>>> a16327973f8cc598b7c69f53dc5ce11d5c7a6990
 		pass
 
 	def get_resolution(self):

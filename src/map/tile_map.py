@@ -5,6 +5,5 @@ class TileMap:
 	def draw(self):
 		pass
 
-	def tick(self, dt):
+	def update(self, dt):
 		pass
-
