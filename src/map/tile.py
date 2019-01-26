@@ -28,3 +28,6 @@ class Tile():
 		self.__t_id = int(data.split()[0])
 		self.__solid = int(data.split()[1])
 		self.__spawn = int(data.split()[2])
+
+	def save_tile(self):
+		return str(self.__t_id) + " " + str(self.__solid) + " " + str(self.__spawn) + "\n"
