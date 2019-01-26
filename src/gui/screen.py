@@ -35,6 +35,9 @@ class Screen:
 	def get_scene(self):
 		return self.__scene
 
+	def get_surface(self):
+		return self.__surface
+
 	def set_scene(self, scene):
 		if self.__scene:
 			self.__scene.clean()

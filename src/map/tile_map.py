@@ -3,7 +3,7 @@ class TileMap:
 	__instance = None
 
 	def __init__(self):
-		self.__chunk[[]]
+		#self.__chunk[[]]
 
 		self.__frame = 0
 

@@ -40,8 +40,12 @@ class Game():
 		dt = 0
 		# Main loop
 		while not self.__done:
-			#for event in pygame.event.get():
-				#put pygame event handling here.
+			for event in pygame.event.get():
+				if event.type == pygame.QUIT:
+					pygame.quit()
+					sys.exit()
+				if event.type == pygame.KEYDOWN and (event.key == pygame.K_z or event.key == pygame.K_x):
+					self.__event_manager.send('fire')
 
 			self.__event_manager.dispatch()
 			self.__screen.update(dt)
