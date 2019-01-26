@@ -7,7 +7,7 @@ class Entity():
 		self.__velx = 0
 		self.vely = 0
 		self.__tilePosition = (0,0)
-		self.__e_id = 0 #e
+		self.__e_id = 0 #entity id
 		self.__e_frame = 0
 		
 	
