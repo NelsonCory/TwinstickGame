@@ -4,9 +4,12 @@ class Entity():
 
 	def __init__(self):
 		self.__position = (0,0)
+		self.__velx = 0
+		self.vely = 0
 		self.__tilePosition = (0,0)
 		self.__e_id = 0 #e
 		self.__e_frame = 0
+		
 	
 	def get_skin(self):
 		return self.skin
