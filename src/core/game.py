@@ -23,9 +23,9 @@ class Game():
 		self.init_pygame()
 		self.__event_manager = EventManager()
 		self.__resource_manager = ResourceManager(path)
-		self.__screen = Screen(Game.RESOLUTION)
 		self.__done = False
 		self.__clock = pygame.time.Clock()
+		self.__screen = Screen(Game.RESOLUTION)
 
 		self.__event_manager.subscribe("on_start", self.on_start)
 

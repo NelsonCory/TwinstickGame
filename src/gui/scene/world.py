@@ -17,11 +17,13 @@ class World(Scene):
 			player.draw()
 		self.__hud.draw()
 
-	def tick(self, dt):
-		self.__tilemap.tick(dt)
+	def update(self, dt):
+		self.__tilemap.update(dt)
 		for player in self.__players:
-			player.tick(dt)
-		self.__hud.tick(dt)
+			player.update(dt)
+		self.__hud.update(dt)
 
 	def get_players(self):
 		return self.__players
+
+	
