@@ -1,4 +1,4 @@
-class TileMap:
+class Hud:
 	def __init__(self):
 		pass
 
@@ -7,4 +7,3 @@ class TileMap:
 
 	def tick(self, dt):
 		pass
-
