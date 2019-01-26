@@ -1,3 +1,4 @@
+from . entity import *
 import pygame
 
 from entity import *
@@ -14,7 +15,7 @@ class Player(Entity):
 	def draw(self):
 		pass
 
-	def update(self, dt): 
+	def update(self, dt):
 		pass
 
 	def get_hp(self):
@@ -25,6 +26,6 @@ class Player(Entity):
 
 	def get_heat(self):
 		return self.__current_heat
-	
+
 	def is_overheated(self):
 		return self.__current_heat >= self.__MAX_HEAT

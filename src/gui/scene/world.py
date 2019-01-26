@@ -1,3 +1,4 @@
+from . scene import *
 from entity.player import *
 from gui.hud import *
 from map.tile_map import *

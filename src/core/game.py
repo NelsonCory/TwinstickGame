@@ -44,7 +44,7 @@ class Game():
 				#put pygame event handling here.
 
 			self.__event_manager.dispatch()
-			self.__screen.tick(dt)
+			self.__screen.update(dt)
 			self.__screen.draw()
 
 			dt = self.__clock.tick(60) / 1000.0

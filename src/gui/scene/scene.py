@@ -6,9 +6,6 @@ class Scene:
 	def add_controller(self, controller):
 		self.__controllers.append(controller)
 
-	def remove_controller(self, controller):
-		del self.__controllers.find(controller)
-
 	def draw(self):
 		pass
 

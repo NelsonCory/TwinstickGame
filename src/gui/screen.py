@@ -1,3 +1,4 @@
+from gui.scene.world import *
 import pygame
 
 class Screen:
@@ -5,8 +6,7 @@ class Screen:
 	def __init__(self, resolution=(1280, 720)):
 		self.__resolution = resolution
 		self.__surface = pygame.display.set_mode(resolution)
-		self.__surface = pygame.display.set_mode(resolution, pygame.FULLSCREEN)
-		self.__scene = None
+		self.__scene = World()
 
 	def blit(self, *args, **kwargs):
 		self.__surface.blit(*args, **kwargs)
@@ -22,16 +22,11 @@ class Screen:
 
 	def draw(self):
 		self.__surface.fill((0, 0, 0))
-		self.__scene.draw(self)
+		self.__scene.draw()
 		pygame.display.flip()
 
-<<<<<<< HEAD
-	def tick(self, dt):
-		self.__scene.tick(dt)
-=======
 	def update(self, dt):
-#		self.__scene.update(dt)
->>>>>>> a16327973f8cc598b7c69f53dc5ce11d5c7a6990
+		self.__scene.update(dt)
 		pass
 
 	def get_resolution(self):
