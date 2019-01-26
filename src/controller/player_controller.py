@@ -13,7 +13,7 @@ class PlayerController(Controller):
 		self.__key_delta = [
 			0,0,0,0 # U D L R
 		]
-		self.__joy_de;ta [0,0] # x y
+		self.__joy_delta [0,0] # x y
 		
 		try:
 			self.__joystick = pygame.joystick.Joystick(player_id) # should be a 1 or 0

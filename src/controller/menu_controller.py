@@ -4,13 +4,13 @@ class MenuController(Controller):
 
 	def __init__(self):
 		super(MenuController,self).__init__()
-	
+	  
 	
 		#menu controller for player 1
 		try:
 			self.__joystick = pygame.joystick.Joystick(0)
 			self.__joystick.init()
-			self.__buttons = self.__joystick.get_button(3) //TODO - find out what this does
+			self.__buttons = self.__joystick.get_button(3) #TODO - find out what this does
 		except:
 			print("ERROR IN MENU CONTROLLER PLAYER ONE JOYSTICK INITIALIZATION")
 			
@@ -18,7 +18,7 @@ class MenuController(Controller):
 		try:
 			self.__joystick = pygame.joystick.Joystick(1)
 			self.__joystick.init()
-			self.__buttons = self.__joystick.get_button(3) //TODO - find out what this does
+			self.__buttons = self.__joystick.get_button(3) #TODO - find out what this does
 		except:
 			print("ERROR IN MENU CONTROLLER PLAYER TWO JOYSTICK INITIALIZATION")
 		
