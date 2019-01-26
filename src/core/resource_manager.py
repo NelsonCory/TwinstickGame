@@ -11,23 +11,24 @@ class ResourceManager:
 		self.__graphics = {}
 		self.__music = {}
 		self.__sounds = {}
-		"""
-		for file in os.listdir(self.__base_path + "fonts/"):
-			key = "fonts/" + os.path.splitext(os.path.basename(file))[0]
-			self.__fonts[key] = os.path.join(self.__base_path, "fonts/" + file)
-		for file in os.listdir(self.__base_path + "graphics/"):
-			key = "graphics/" + os.path.splitext(os.path.basename(file))[0]
-			surface = pygame.image.load(os.path.join(self.__base_path, "graphics/" + file))
-			self.__graphics[key] = surface
-		for file in os.listdir(self.__base_path + "music/"):
-			key = "music/" + os.path.splitext(os.path.basename(file))[0]
-			music = pygame.mixer.Sound(os.path.join(self.__base_path, "music/" + file))
-			self.__music[key] = music
-		for file in os.listdir(self.__base_path + "sounds/"):
-			key = "sounds/" + os.path.splitext(os.path.basename(file))[0]
-			sound = pygame.mixer.Sound(os.path.join(self.__base_path, "sounds/" + file))
-			self.__sounds[key] = sound
-		"""
+		
+		# for file in os.listdir(self.__base_path + "fonts/"):
+			# key = "fonts/" + os.path.splitext(os.path.basename(file))[0]
+			# self.__fonts[key] = os.path.join(self.__base_path, "fonts/" + file)
+		# for file in os.listdir(self.__base_path + "graphics/"):
+			# key = "graphics/" + os.path.splitext(os.path.basename(file))[0]
+			# surface = pygame.image.load(os.path.join(self.__base_path, "graphics/" + file))
+			# self.__graphics[key] = surface
+		# for file in os.listdir(self.__base_path + "music/"):
+			# key = "music/" + os.path.splitext(os.path.basename(file))[0]
+			# music = pygame.mixer.Sound(os.path.join(self.__base_path, "music/" + file))
+			# self.__music[key] = music
+		# for file in os.listdir(self.__base_path + "sounds/"):
+			# key = "sounds/" + os.path.splitext(os.path.basename(file))[0]
+			# sound = pygame.mixer.Sound(os.path.join(self.__base_path, "sounds/" + file))
+			# self.__sounds[key] = sound
+		
+		
 		ResourceManager.__instance = self
 
 	@staticmethod
