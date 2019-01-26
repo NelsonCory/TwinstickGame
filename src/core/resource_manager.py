@@ -12,7 +12,6 @@ class ResourceManager:
 		self.__entities = [[]]
 		self.__music = {}
 		self.__effects = {}
-
 		self.load_tiles()
 		self.load_entities()
 		self.load_fonts()

@@ -3,9 +3,10 @@ import pygame
 class Entity():
 
 	def __init__(self):
-		self.__skin = None
 		self.__position = (0,0)
 		self.__tilePosition = (0,0)
+		self.__e_id = 0 #e
+		self.__e_frame = 0
 	
 	def get_skin(self):
 		return self.skin
@@ -26,5 +27,16 @@ class Entity():
 		rect = self.__skin.get_rect()
 		return pygame.Rect(self.__position[0], self.__position[1], rect[2], rect[3])
 	
+	def get_id(self):
+		return self.__e_id
+	
+	def set_id(self):
+		return self.__e_id
 		
-		
+	def get_frame(self):
+		#get current frame
+		return self.__e_frame
+	
+	def set_frame(self,frame):
+		self.__e_frame = frame
+	
