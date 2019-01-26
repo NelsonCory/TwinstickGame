@@ -20,7 +20,7 @@ class ResourceManager:
 		self.load_music()
 
 		ResourceManager.__instance = self
-
+		
 	@staticmethod
 	def get_instance():
 		return ResourceManager.__instance
