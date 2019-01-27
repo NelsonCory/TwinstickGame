@@ -24,17 +24,15 @@ currTile = Tile()
 
 currTile.load_tile("0 0 0")
 
-def onClick():
+def onClick(tmx, tmy, ctile):
 
-	pass
-	# @ Raine, not sure how you want to handle tile placements
-	# but this function will execute every time the mouse button is released
-	# should help ya out
+	global tm
+	tm.set_tile(tmx, tmy, ctile)
 
 
 while True: # the main game loop
 	DISPLAYSURF.fill((0, 0, 0))
-	
+
 	tm.draw(DISPLAYSURF)
 
 	mouse = pygame.mouse.get_pos()
@@ -47,11 +45,22 @@ while True: # the main game loop
 
 	pygame.draw.rect(DISPLAYSURF, (90, 0, 50), (tmx*32,tmy*32, 32, 32), 2)
 
-	
+
 	for event in pygame.event.get():
+		#print("input the id:")
 		if event.type == pygame.MOUSEBUTTONUP:
-			onClick()
+			onClick(tmx, tmy, currTile)
+		if event.type == pygame.KEYDOWN:
+			if event.key == pygame.K_w:
+				print("input the id:")
+				currTile.set_t_id(int(input()))
+				print("Solid?")
+				currTile.set_solid(int(input()))
+				print("Spawn?")
+				currTile.set_spawn(int(input()))
+
 		if event.type == QUIT:
+			tm.save_map("map.dat")
 			pygame.quit()
 			sys.exit()
 

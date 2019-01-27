@@ -5,6 +5,7 @@ from controller.player_controller import *
 from entity.bullet import *
 from gui.hud import *
 from map.tile_map import *
+import sys
 
 class World(Scene):
 
@@ -12,6 +13,7 @@ class World(Scene):
 		super(World, self).__init__()
 		self.__bullets = []
 		self.__tilemap = TileMap()
+		self.__tilemap.load_map(os.path.dirname(sys.argv[0]) + "/res/maps/map.dat")
 		self.__players = [Player(0, 96, 96), Player(1, 1184, 634)]
 		self.__hud = Hud()
 		self.__AlphaInput = PlayerController(0)
@@ -44,5 +46,3 @@ class World(Scene):
 
 	def on_fire(self, _):
 		self.__bullets.append(Bullet(640, 360, 2, None))
-
-
