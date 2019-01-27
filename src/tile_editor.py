@@ -37,8 +37,9 @@ while True: # the main game loop
 	tmy = my // 32
 	print(str(tmx) + " " + str(tmy))
 
-	pygame.draw.rect(DISPLAYSURF, (90, 0, 50), (tmx*32, tmy*32, mx*32+32, my*32+32), 2)
+	pygame.draw.rect(DISPLAYSURF, (90, 0, 50), (tmx*32,tmy*32, 32, 32), 2)
 
+	
 	for event in pygame.event.get():
 		if event.type == QUIT:
 			pygame.quit()
