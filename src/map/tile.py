@@ -19,10 +19,10 @@ class Tile():
 		self.__t_id = t_id
 
 	def set_solid(self, solid):
-		self.__solid = __solid
+		self.__solid = solid
 
 	def set_spawn(self, spawn):
-		self.__spawn = __spawn
+		self.__spawn = spawn
 
 	def load_tile(self, data):
 		self.__t_id = int(data.split()[0])
