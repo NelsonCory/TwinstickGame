@@ -50,6 +50,8 @@ class Player(Entity):
 	
 				
 	def update(self, dt):
+		
+		self.set_frame(1)
 
 		if self.__velocity_x*self.__velocity_x + self.__velocity_y*self.__velocity_y > Player.ANALOG_STICK_THRESHOLD*Player.ANALOG_STICK_THRESHOLD:
 			self.__speed = Player.MAX_SPEED
