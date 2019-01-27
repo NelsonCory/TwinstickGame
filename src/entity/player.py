@@ -49,8 +49,34 @@ class Player(Entity):
 		if norm > 1:
 			self.__velocity_x = self.__velocity_x / norm
 			self.__velocity_y = self.__velocity_y / norm
+		self.__velocity_x, self.__velocity_y = self.check_collisions(self.__velocity_x, self.__velocity_y)
 		self.__x += self.__velocity_x * self.__speed * dt
 		self.__y += self.__velocity_y * self.__speed * dt
+
+	def check_collisions(self, dx, dy):
+		tile_x = self.__x // 32
+		tile_y = self.__y // 32
+		for i in range(-1, 2):
+			for j in range(-1, 2):
+				if i == 0 and j == 0:
+					continue
+				if not(TileMap.get_instance().get_tile(tile_x+i, tile_y+j).get_solid()):
+					continue
+				test_rect_x = pygame.Rect(self.__x + dx, self.__y, 32, 32)
+				test_rect_y = pygame.Rect(self.__x, self.__y + dy, 32, 32)
+				tile_rect = pygame.Rect((tile_x + i)*32, (tile_y + j)*32, 32, 32)
+				if test_rect_x.colliderect(tile_rect):
+					if dx < 0:
+						dx = (tile_x+i+1)*32 - self.__x
+					else:
+						dx = (tile_x+i)*32 - (self.__x+32)
+				if test_rect_y.colliderect(tile_rect):
+					if dy < 0:
+						dy = (tile_y+i+1)*32 - self.__y
+					else:
+						dy = (tile_y+i)*32 - (self.__y+32)
+		return dx, dy
+
 
 	def get_hp(self):
 		return self.__hp
