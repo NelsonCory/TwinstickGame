@@ -34,9 +34,11 @@ class Player(Entity):
 		self.__rotation_x = 0
 		self.__rotation_y = 1
 		self.__alive = True
+		self.__time = pygame.time.get_ticks()
+		self.__ani_count = 0
+		self.__ani_milli = 200
+		self.set_frame(0)
 		self.__anim_state = 0
-		self.__anim_speed = 0.2 #seconds
-		self.__base_time = time.clock()
 
 
 		EventManager.get_instance().subscribe(f"joystick{self.__id}_update", self.on_joystick_update)
@@ -49,14 +51,35 @@ class Player(Entity):
 				(self.__x, self.__y))
 
 	def update(self, dt):
+<<<<<<< HEAD
 
 		self.set_frame(1)
 
+=======
+		
+		if(self.__anim_state == 0):
+			self.set_frame(0)
+		else:
+			self.__ani_time = pygame.time.get_ticks()
+			if (self.__ani_time - self.__time) >= self.__ani_milli:
+				self.__time = pygame.time.get_ticks()
+				self.__temp_frame = self.get_frame()+1
+				self.set_frame(self.__temp_frame)
+				if self.get_frame() == 3:
+					self.set_frame(0)
+			
+		if(self.__speed == 0):
+			self.__anim_state = 0
+		else:
+			self.__anim_state = 1
+		
+>>>>>>> 801bc492a8d8f0a7ccb17eb8b6542b516709a692
 		if self.__velocity_x*self.__velocity_x + self.__velocity_y*self.__velocity_y > Player.ANALOG_STICK_THRESHOLD*Player.ANALOG_STICK_THRESHOLD:
 			self.__speed = Player.MAX_SPEED
 		else:
 			self.__speed = 0
 
+		
 		norm = math.sqrt(self.__velocity_x*self.__velocity_x + self.__velocity_y*self.__velocity_y)
 		if norm > 1:
 			self.__velocity_x = self.__velocity_x / norm
