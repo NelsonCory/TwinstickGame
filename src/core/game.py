@@ -6,6 +6,7 @@ from . event_manager import *
 from . resource_manager import *
 from gui.screen import *
 import pygame
+import sys
 
 class Game():
 
