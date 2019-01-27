@@ -45,15 +45,17 @@ class ResourceManager:
 				print("bad file format/incorrect path in tile load. File: " + file)
 
 	def load_entities(self):
-		e_id = -1
+		e_id = 0
 		for file in sorted(os.listdir(self.__base_path +"graphics/entities/")):
 			try:
 				file_dat = os.path.basename(file).split("_")
 				if int(file_dat[1]) > e_id:
 					self.__entities.append([])
 					e_id = int(file_dat[1])
+				else:
+					e_id = int(file_dat[1])
 
-					self.__entities[e_id].append(pygame.image.load(os.path.join(self.__base_path, "graphics/entities/" + file)))
+				self.__entities[e_id].append(pygame.image.load(os.path.join(self.__base_path, "graphics/entities/" + file)))
 			except:
 				print("bad file format/incorrect path in ent load. File: " + file)
 
