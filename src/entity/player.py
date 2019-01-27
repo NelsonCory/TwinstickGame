@@ -24,7 +24,8 @@ class Player(Entity):
 		spawn_list = TileMap.get_instance().get_spawn_list()
 		for spawnpoint in spawn_list:
 			if spawnpoint[2] == self.__id:
-				self.__x, self.__y = spawnpoint[:2]
+				self.__x, self.__y = spawnpoint[0]*32, spawnpoint[1]*32
+				break
 		self.__velocity_x = 0
 		self.__velocity_y = 0
 		self.__speed = 0
