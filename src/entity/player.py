@@ -18,7 +18,7 @@ class Player(Entity):
 	def __init__(self, id_):
 		self.__id = id_
 		self.__total_frames = ResourceManager.get_instance().get_entity_frames(self.__id)
-		self.__hp = 100
+		self.__hp = 3
 		self.__shield = 100
 		self.__current_heat = 0
 		spawn_list = TileMap.get_instance().get_spawn_list()

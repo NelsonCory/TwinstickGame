@@ -18,6 +18,7 @@ class ResourceManager:
 		self.load_fonts()
 		self.load_effects()
 		self.load_music()
+		self.load_hud()
 
 		ResourceManager.__instance = self
 
@@ -122,3 +123,6 @@ class ResourceManager:
 	#---------------------------------------------------------------------------effect accessors
 	def get_effects(self, key):
 		return self.__effects[key]
+
+	def get_hud(self, h_id):
+		return self.__hud[h_id]

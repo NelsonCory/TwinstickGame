@@ -8,7 +8,16 @@ class Hud:
 		self.__heat = [0, 0]
 
 	def draw(self):
-		pass
+		surface = get_game_instance().get_screen().get_surface()
+		rm = ResourceManager.get_instance()
+
+		surface.blit(rm.get_hud(1), (100, 656))
+		surface.blit(rm.get_hud(0), (1153-100, 656))
+
+		for h1 in range(self.__hp[0]):
+			x = 164
+			y = 680
+			pygame.draw.rect(surface, (0, 40, 150), (x+((4+14)*h1), y, 14, 9))
 
 	def update(self, dt):
 		players = get_game_instance().get_screen().get_scene().get_players()
