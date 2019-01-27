@@ -26,6 +26,7 @@ class ResourceManager:
 	def get_instance():
 		return ResourceManager.__instance
 
+	#---------------------------------------------------------------------------loading functions
 	def load_tiles(self):
 		t_id = 0
 		layer = 0
@@ -124,5 +125,6 @@ class ResourceManager:
 	def get_effects(self, key):
 		return self.__effects[key]
 
+	#---------------------------------------------------------------------------hud accessors
 	def get_hud(self, h_id):
 		return self.__hud[h_id]
