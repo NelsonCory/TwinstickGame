@@ -12,5 +12,8 @@ class Vec:
 	def __sub__(self, other):
 		return self + other*(-1)
 
+	def __str__(self):
+		return f"<{self.__v[0]}, {self.__v[1]}>"
+
 	def get_tuple(self):
 		return self.__v
