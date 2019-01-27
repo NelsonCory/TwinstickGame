@@ -51,12 +51,12 @@ class PlayerController(Controller):
 
 	def update(self, dt):
 		if self.__joystick != None:
-			move_vec, direction_vec = self.receive_joy()
-			EventManager.get_instance().send(f"joystick{self.__player_id}_update", (move_vec, direction_vec))
+			joystick_data = self.receive_joy()
+			EventManager.get_instance().send(f"joystick{self.__player_id}_update", joystick_data)
 
 	def receive_joy(self):
 		move_x = self.__joystick.get_axis(0)
 		move_y = self.__joystick.get_axis(1)
 		rot_x = self.__joystick.get_axis(3)
 		rot_y = self.__joystick.get_axis(4)
-		return Vec(move_x, move_y), Vec(rot_x, rot_y).normalize()
+		return move_x, move_y, rot_x, rot_y

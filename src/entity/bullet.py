@@ -10,17 +10,21 @@ class Bullet(Entity):
 
 	def __init__(self, x, y, angle, allegiance):
 		super(Bullet, self).__init__()
-		self.__pos = Vec(x, y)
-		self.__direction_vec = Vec(math.cos(angle), math.sin(angle))
+		self.__x = x
+		self.__y = y
+		self.__velocity_x = math.cos(angle)
+		self.__velocity_y = math.sin(angle)
 		self.__speed = Bullet.DEFAULT_BULLET_SPEED
 		self.__allegiance = allegiance
 
 	def draw(self):
 		surface = get_game_instance().get_screen().get_surface()
-		trail = self.__pos - self.__direction_vec * Bullet.BULLET_TRAIL_LENGTH
-		start = self.__pos.get_tuple()
-		end = trail.get_tuple()
+		trail_x = self.__x - self.__velocity_x * Bullet.BULLET_TRAIL_LENGTH
+		trail_y = self.__y - self.__velocity_y * Bullet.BULLET_TRAIL_LENGTH
+		start = (self.__x, self.__y)
+		end = (trail_x, trail_y)
 		pygame.draw.line(surface, pygame.Color(255, 0, 0, 0), start, end, 3)
 
 	def update(self, dt):
-		self.__pos += self.__direction_vec * (dt * self.__speed)
+		self.__x += self.__velocity_x * dt * self.__speed
+		self.__y += self.__velocity_y * dt * self.__speed
