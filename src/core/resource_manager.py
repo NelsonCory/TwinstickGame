@@ -85,7 +85,7 @@ class ResourceManager:
 				print("bad file format/incorrect path in effects load. File: " + file)
 
 	def load_hud(self):
-		for file in sorted(os.listdir(self.__base_path + "graphics/hud/"):
+		for file in sorted(os.listdir(self.__base_path + "graphics/hud/")):
 			self.__hud.append(pygame.image.load(os.path.join(self.__base_path, "graphics/hud/" + file)))
 
 	#---------------------------------------------------------------------------tile accessors
