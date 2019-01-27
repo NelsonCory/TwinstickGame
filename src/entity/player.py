@@ -18,7 +18,6 @@ class Player(Entity):
 	def __init__(self, id_):
 		self.__id = id_
 		self.__total_frames = ResourceManager.get_instance().get_entity_frames(self.__id)
-		self.__frame = 0
 		self.__hp = 100
 		self.__shield = 100
 		self.__current_heat = 0
@@ -35,13 +34,18 @@ class Player(Entity):
 		self.__rotation_x = 0
 		self.__rotation_y = 1
 		self.__alive = True
-		#self.__anim_state = 0
+		self.__anim_state = 0
+		self.__anim_speed = 0.2 #seconds
+		self.__base_time = time.clock()
+		
 
 		EventManager.get_instance().subscribe(f"joystick{self.__id}_update", self.on_joystick_update)
 
 	def draw(self):
+		#print(self.get_frame())
+		#print(ResourceManager.get_instance().get_entity_frames(1))
 		surface = get_game_instance().get_screen().get_surface()
-		surface.blit(ResourceManager.get_instance().get_entities(self.__id, self.__frame),
+		surface.blit(ResourceManager.get_instance().get_entities(self.__id, self.get_frame()),
 				(self.__x, self.__y))	
 	
 				
@@ -51,20 +55,6 @@ class Player(Entity):
 			self.__speed = Player.MAX_SPEED
 		else:
 			self.__speed = 0
-		
-		# if(self.__anim_state == 0 and self.__speed == 0):
-			# self.set_frame(0)
-		# elif (self.__anim_state == 0 & self.__speed > 0):
-			# self.__anim_state = 0
-			# self.set_frame(1)
-		# elif (self.__anim_state == 1 & self.__speed == 0):
-			# self.__anim_state = 1
-			# self.set_frame(0)
-		# elif (self.__anim_state == 1 & self.__speed > 0):
-			# self.set_frame(1)
-		# else:
-			# pass
-		# print(self.__anim_state)
 		
 		norm = math.sqrt(self.__velocity_x*self.__velocity_x + self.__velocity_y*self.__velocity_y)
 		if norm > 1:
