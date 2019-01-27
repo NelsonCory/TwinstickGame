@@ -92,7 +92,6 @@ class Player(Entity):
 				tile_rect = pygame.Rect(tile_x, tile_y, 32, 32)
 				if tile_manager.get_tile(x, y).get_solid():
 					 if test_rect.colliderect(tile_rect):
-						 print("collide")
 						 return tile_rect
 
 		return None
@@ -113,7 +112,6 @@ class Player(Entity):
 			if dx > 0:
 				if not(player_rect.bottom - test_tile_x.top < player_rect.right - test_tile_x.left):
 					dx = test_tile_x.left - player_rect.right
-			print("x_collision")
 
 		test_rect_y = pygame.Rect(self.__x, self.__y + dy, 32, 32)
 		test_tile_y = self.will_collide(tm, test_rect_y, tile_x, tile_y)
@@ -123,7 +121,6 @@ class Player(Entity):
 			if dy > 0:
 				if not(player_rect.right - test_tile_y.left < player_rect.bottom - test_tile_y.top):
 					dy = test_tile_y.top - player_rect.bottom
-			print("y_collision")
 		return dx, dy
 
 
