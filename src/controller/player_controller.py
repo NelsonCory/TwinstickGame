@@ -3,7 +3,7 @@ import pygame
 
 class PlayerController(Controller):
 
-	#Note: Since gameplay is not assymetric, two objects of the same PlayerController class can be used to
+	#Note: Since gameplay is not asymetric, two objects of the same PlayerController class can be used to
 	#control both players.
 
 	def __init__(self,player_id = 0):
@@ -13,7 +13,7 @@ class PlayerController(Controller):
 		self.__key_delta = [
 			0,0,0,0 # U D L R
 		]
-		self.__joy_delta [0,0] # x y
+		self.__joy_delta = [0,0] # x y
 
 		try:
 			self.__joystick = pygame.joystick.Joystick(player_id) # should be a 1 or 0

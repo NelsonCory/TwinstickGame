@@ -21,6 +21,7 @@ class Player(Entity):
 		self.__pos = Vec(x, y)
 		self.__direction = Vec(0, 1)
 		self.__speed = 0
+		self.__alive = True
 
 	def draw(self):
 		surface = get_game_instance().get_screen().get_surface()

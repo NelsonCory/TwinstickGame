@@ -1,5 +1,6 @@
 import pygame
 from . tile import *
+from core.game import *
 from core.resource_manager import *
 
 
@@ -39,11 +40,11 @@ class TileMap:
 				f.write(self.__chunk[x][y].save_tile())
 		f.close()
 
-	def draw(self, scrn):
+	def draw(self,scrn):
 		res = ResourceManager.get_instance()
 		for x in range(40):
 			for y in range(22):
-				scrn.blit(res.get_tile(self.__chunk[x][y].get_t_id(), 0, self.__frame), (x*32, y*32))
+					scrn.blit(res.get_tile(self.__chunk[x][y].get_t_id(), 0, self.__frame), (x*32, y*32))
 
 	def update(self, dt=0):
 		pass
