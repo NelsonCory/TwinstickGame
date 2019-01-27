@@ -20,10 +20,10 @@ class World(Scene):
 
 
 	def draw(self):
-	
+
 		self.__game_screen = get_game_instance().get_screen()
 		self.__tilemap.draw(self.__game_screen)
-		
+
 		for bullet in self.__bullets:
 			bullet.draw()
 		for player in self.__players:
@@ -32,6 +32,8 @@ class World(Scene):
 
 	def update(self, dt):
 		#self.__tilemap.update(dt)
+		self.__AlphaInput.update(dt)
+		self.__BetaInput.update(dt)
 		for bullet in self.__bullets:
 			bullet.update(dt)
 		for player in self.__players:
@@ -44,4 +46,4 @@ class World(Scene):
 	def on_fire(self, _):
 		self.__bullets.append(Bullet(640, 360, 2, None))
 
-		
+

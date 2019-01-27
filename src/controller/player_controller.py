@@ -1,4 +1,6 @@
 from . controller import *
+from core.event_manager import *
+from core.utils import *
 import pygame
 
 class PlayerController(Controller):
@@ -14,6 +16,8 @@ class PlayerController(Controller):
 			0,0,0,0 # U D L R
 		]
 		self.__joy_delta = [0,0] # x y
+
+		self.__joystick = None
 
 		try:
 			self.__joystick = pygame.joystick.Joystick(player_id) # should be a 1 or 0
@@ -45,8 +49,14 @@ class PlayerController(Controller):
 			self.key_delta[3] = 0
 
 
-	def update(self):
-		pass
+	def update(self, dt):
+		if self.__joystick != None:
+			move_vec, direction_vec = self.receive_joy()
+			EventManager.get_instance().send(f"joystick{self.__player_id}_update", (move_vec, direction_vec))
 
 	def receive_joy(self):
-		pass
+		move_x = self.__joystick.get_axis(0)
+		move_y = self.__joystick.get_axis(1)
+		rot_x = self.__joystick.get_axis(3)
+		rot_y = self.__joystick.get_axis(4)
+		return Vec(move_x, move_y), Vec(rot_x, rot_y).normalize()
