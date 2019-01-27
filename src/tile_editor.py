@@ -48,10 +48,11 @@ while True: # the main game loop
 
 	for event in pygame.event.get():
 		#print("input the id:")
-		if event.type == pygame.MOUSEBUTTONUP:
+		if event.type == pygame.MOUSEBUTTONDOWN:
 			onClick(tmx, tmy, currTile)
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_w:
+				currTile = Tile()
 				print("input the id:")
 				currTile.set_t_id(int(input()))
 				print("Solid?")
