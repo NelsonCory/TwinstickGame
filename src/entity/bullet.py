@@ -18,12 +18,18 @@ class Bullet(Entity):
 
 	def draw(self):
 		surface = get_game_instance().get_screen().get_surface()
-		trail_x = self.__x - self.__velocity_x * Bullet.BULLET_TRAIL_LENGTH
-		trail_y = self.__y - self.__velocity_y * Bullet.BULLET_TRAIL_LENGTH
+		self.__trail_x = self.__x - self.__velocity_x * Bullet.BULLET_TRAIL_LENGTH
+		self.__trail_y = self.__y - self.__velocity_y * Bullet.BULLET_TRAIL_LENGTH
 		start = (self.__x, self.__y)
-		end = (trail_x, trail_y)
+		end = (self.__trail_x, self.__trail_y)
 		pygame.draw.line(surface, pygame.Color(255, 0, 0, 0), start, end, 3)
 
 	def update(self, dt):
 		self.__x += self.__velocity_x * dt * self.__speed
 		self.__y += self.__velocity_y * dt * self.__speed
+
+	def check_collision(self, r):
+		center_x = (self.__x + self.__trail_x) / 2
+		center_y = (self.__y + self.__trail_y) / 2
+		enemy_id = (2 - self.__allegiance) % 2
+		enemy = get_game_instance().get_screen().get_scene().get_players()[enemy_id]

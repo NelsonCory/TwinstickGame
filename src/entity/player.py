@@ -51,9 +51,11 @@ class Player(Entity):
 		if norm > 1:
 			self.__velocity_x = self.__velocity_x / norm
 			self.__velocity_y = self.__velocity_y / norm
-		self.__velocity_x, self.__velocity_y = self.check_collisions(self.__velocity_x, self.__velocity_y)
-		self.__x += self.__velocity_x * self.__speed * dt
-		self.__y += self.__velocity_y * self.__speed * dt
+		dx = self.__velocity_x * self.__speed * dt
+		dy = self.__velocity_y * self.__speed * dt
+		dx, dy = self.check_collisions(dx, dy)
+		self.__x += dx
+		self.__y += dy
 
 	def check_collisions(self, dx, dy):
 		tile_x = int(self.__x // 32)
