@@ -32,7 +32,7 @@ class World(Scene):
 		self.__hud.draw()
 
 	def update(self, dt):
-		#self.__tilemap.update(dt)
+		self.__tilemap.update(dt)
 		self.__AlphaInput.update(dt)
 		self.__BetaInput.update(dt)
 		for bullet in self.__bullets:

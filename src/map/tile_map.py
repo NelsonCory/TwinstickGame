@@ -14,6 +14,10 @@ class TileMap:
 		self.__spawn_list = []
 
 		self.__frame = 0
+		self.__time = pygame.time.get_ticks()
+		self.__ani_count = 0
+		self.__ani_milli = 700
+
 		self.init_map()
 		TileMap.__instance = self
 
@@ -47,10 +51,18 @@ class TileMap:
 		res = ResourceManager.get_instance()
 		for x in range(40):
 			for y in range(22):
+				if res.get_tile_frames(self.__chunk[x][y].get_t_id(), 0) > 1:
 					scrn.blit(res.get_tile(self.__chunk[x][y].get_t_id(), 0, self.__frame), (x*32, y*32))
+				else:
+					scrn.blit(res.get_tile(self.__chunk[x][y].get_t_id(), 0, 0), (x*32, y*32))
 
 	def update(self, dt=0):
-		pass
+		self.__ani_time = pygame.time.get_ticks()
+		if (self.__ani_time - self.__time) >= self.__ani_milli:
+			self.__time = pygame.time.get_ticks()
+			self.__frame += 1
+			if self.__frame == 3:
+				self.__frame = 0
 
 	def get_tile(self, x, y):
 		return self.__chunk[x][y]
