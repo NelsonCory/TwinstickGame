@@ -80,8 +80,8 @@ class Player(Entity):
 		# Get the tile coordinates
 		tile_x = int(self.__x // 32)
 		tile_y = int(self.__y // 32)
-		rdx = dx
-		rdy = dy
+		result_dx = dx
+		result_dy = dy
 
 		# Iterate over every square around the current tile
 		for i in range(-1, 2):
@@ -104,19 +104,19 @@ class Player(Entity):
 				# Collision corrections
 				if test_rect_x.colliderect(tile_rect):
 					if dx < 0:
-						rdx = tile_rect.right - player_rect.left
+						result_dx = tile_rect.right - player_rect.left
 					elif dx > 0:
-						rdx = tile_rect.left - player_rect.right
+						result_dx = tile_rect.left - player_rect.right
 					else:
-						rdx = 0
+						result_dx = 0
 				if test_rect_y.colliderect(tile_rect):
 					if dy < 0:
-						rdy = tile_rect.bottom - player_rect.top
+						result_dy = tile_rect.bottom - player_rect.top
 					elif dy > 0:
-						rdy = tile_rect.top - player_rect.bottom
+						result_dy = tile_rect.top - player_rect.bottom
 					else:
-						rdy = 0
-		return rdx, rdy
+						result_dy = 0
+		return result_dx, result_dy
 
 
 	def get_hp(self):
