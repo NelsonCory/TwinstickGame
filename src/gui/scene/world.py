@@ -3,20 +3,20 @@ from core.event_manager import *
 from entity.player import *
 from entity.bullet import *
 from gui.hud import *
-from map.tile_map import *
+#from map.tile_map import *
 
 class World(Scene):
 
 	def __init__(self):
 		super(World, self).__init__()
 		self.__bullets = []
-		self.__tilemap = TileMap()
+		#self.__tilemap = TileMap()
 		self.__players = [Player(), Player()]
 		self.__hud = Hud()
 		EventManager.get_instance().subscribe('fire', self.on_fire)
 
 	def draw(self):
-		self.__tilemap.draw()
+		#self.__tilemap.draw()
 		for bullet in self.__bullets:
 			bullet.draw()
 		for player in self.__players:
@@ -24,7 +24,7 @@ class World(Scene):
 		self.__hud.draw()
 
 	def update(self, dt):
-		self.__tilemap.update(dt)
+		#self.__tilemap.update(dt)
 		for bullet in self.__bullets:
 			bullet.update(dt)
 		for player in self.__players:
