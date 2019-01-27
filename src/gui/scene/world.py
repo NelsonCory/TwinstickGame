@@ -1,6 +1,7 @@
 from . scene import *
 from core.event_manager import *
 from entity.player import *
+from controller.player_controller import *
 from entity.bullet import *
 from gui.hud import *
 #from map.tile_map import *
