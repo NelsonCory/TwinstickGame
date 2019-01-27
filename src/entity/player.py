@@ -51,12 +51,7 @@ class Player(Entity):
 				(self.__x, self.__y))
 
 	def update(self, dt):
-<<<<<<< HEAD
 
-		self.set_frame(1)
-
-=======
-		
 		if(self.__anim_state == 0):
 			self.set_frame(0)
 		else:
@@ -67,19 +62,18 @@ class Player(Entity):
 				self.set_frame(self.__temp_frame)
 				if self.get_frame() == 3:
 					self.set_frame(0)
-			
+
 		if(self.__speed == 0):
 			self.__anim_state = 0
 		else:
 			self.__anim_state = 1
-		
->>>>>>> 801bc492a8d8f0a7ccb17eb8b6542b516709a692
+
 		if self.__velocity_x*self.__velocity_x + self.__velocity_y*self.__velocity_y > Player.ANALOG_STICK_THRESHOLD*Player.ANALOG_STICK_THRESHOLD:
 			self.__speed = Player.MAX_SPEED
 		else:
 			self.__speed = 0
 
-		
+
 		norm = math.sqrt(self.__velocity_x*self.__velocity_x + self.__velocity_y*self.__velocity_y)
 		if norm > 1:
 			self.__velocity_x = self.__velocity_x / norm
@@ -116,20 +110,20 @@ class Player(Entity):
 		if test_tile_x != None:
 			if dx < 0:
 				dx = test_tile_x.right - player_rect.left
-			elif dx > 0:
-				dx = test_tile_x.left - player_rect.right
-			else:
-				dx = 0
+			if dx > 0:
+				if not(player_rect.bottom - test_tile_x.top < player_rect.right - test_tile_x.left):
+					dx = test_tile_x.left - player_rect.right
+			print("x_collision")
 
 		test_rect_y = pygame.Rect(self.__x, self.__y + dy, 32, 32)
 		test_tile_y = self.will_collide(tm, test_rect_y, tile_x, tile_y)
 		if test_tile_y != None:
 			if dy < 0:
 				dy = test_tile_y.bottom - player_rect.top
-			elif dy > 0:
-				dy = test_tile_y.top - player_rect.bottom
-			else:
-				dy = 0
+			if dy > 0:
+				if not(player_rect.right - test_tile_y.left < player_rect.bottom - test_tile_y.top):
+					dy = test_tile_y.top - player_rect.bottom
+			print("y_collision")
 		return dx, dy
 
 
