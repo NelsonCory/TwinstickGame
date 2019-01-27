@@ -84,6 +84,7 @@ class Player(Entity):
 		self.__x += dx
 		self.__y += dy
 
+	#---------------------------------------------------------------------------collision stuff
 	def will_collide(self, tile_manager, test_rect, test_tile_x, test_tile_y):
 		for x in range(test_tile_x - 1, test_tile_x + 2):
 			for y in range(test_tile_y - 1, test_tile_y + 2):
