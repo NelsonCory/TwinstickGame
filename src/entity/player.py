@@ -22,8 +22,10 @@ class Player(Entity):
 		self.__shield = 100
 		self.__current_heat = 0
 		spawn_list = TileMap.get_instance().get_spawn_list()
+		self.__x = 0
+		self.__y = 0
 		for spawnpoint in spawn_list:
-			if spawnpoint[2] == self.__id:
+			if spawnpoint[2] == self.__id+1:
 				self.__x, self.__y = spawnpoint[0]*32, spawnpoint[1]*32
 				break
 		self.__velocity_x = 0
@@ -54,11 +56,13 @@ class Player(Entity):
 		self.__y += self.__velocity_y * self.__speed * dt
 
 	def check_collisions(self, dx, dy):
-		tile_x = self.__x // 32
-		tile_y = self.__y // 32
+		tile_x = int(self.__x // 32)
+		tile_y = int(self.__y // 32)
 		for i in range(-1, 2):
 			for j in range(-1, 2):
 				if i == 0 and j == 0:
+					continue
+				if tile_x + i < 0 or tile_x + i >= 40 or tile_y + j < 0 or tile_y + j >= 22:
 					continue
 				if not(TileMap.get_instance().get_tile(tile_x+i, tile_y+j).get_solid()):
 					continue
