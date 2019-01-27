@@ -18,7 +18,9 @@ class World(Scene):
 		self.__hud = Hud()
 		self.__AlphaInput = PlayerController(0)
 		self.__BetaInput = PlayerController(1)
-		EventManager.get_instance().subscribe('fire', self.on_fire)
+		event_mgr = EventManager.get_instance()
+		event_mgr.subscribe("fire", self.on_fire)
+		event_mgr.subscribe("damage", self.on_damage)
 
 
 	def draw(self):
@@ -44,5 +46,14 @@ class World(Scene):
 	def get_players(self):
 		return self.__players
 
-	def on_fire(self, _):
-		self.__bullets.append(Bullet(640, 360, 2, None))
+	def on_fire(self, player_id):
+		rotx, roty = self.__players[player_id].get_rotation()
+		x, y = self.__players[player_id].get_position()
+		self.__bullets.append(Bullet(x, y, rotx, roty, player_id))
+
+	def on_damage(self, player_id):
+		player = self.__players[player_id]
+		player.set_hp(player.get_hp() - 1)
+		if player.get_hp() == 0:
+			EventManager.get_instance().send("death", player_id)
+			print("Killed player")

@@ -1,11 +1,13 @@
 from . controller import *
 from core.event_manager import *
+import os
 import pygame
 
 class PlayerController(Controller):
 
 	#Note: Since gameplay is not asymetric, two objects of the same PlayerController class can be used to
 	#control both players.
+	TRIGGER_THRESHOLD = 0.5
 
 	def __init__(self,player_id = 0):
 		super(PlayerController,self).__init__()
@@ -50,8 +52,14 @@ class PlayerController(Controller):
 
 	def update(self, dt):
 		if self.__joystick != None:
-			joystick_data = self.receive_joy()
-			EventManager.get_instance().send(f"joystick{self.__player_id}_update", joystick_data)
+			analog_data = self.receive_joy()
+			EventManager.get_instance().send(f"joystick{self.__player_id}_update", analog_data)
+			if os.name == 'posix':
+				trigger_data = (self.__joystick.get_axis(5) - self.__joystick.get_axis(2)) / 2
+			else:
+				trigger_data = self.__joystick.get_axis(2)
+			if trigger_data > PlayerController.TRIGGER_THRESHOLD:
+				EventManager.get_instance().send("fire", self.__player_id)
 
 	def receive_joy(self):
 		move_x = self.__joystick.get_axis(0)

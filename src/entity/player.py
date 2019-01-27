@@ -136,6 +136,21 @@ class Player(Entity):
 	def get_heat(self):
 		return self.__current_heat
 
+	def get_position(self):
+		return self.__x, self.__y
+
+	def get_rotation(self):
+		return self.__rotation_x, self.__rotation_y
+
+	def set_hp(self, hp):
+		self.__hp = hp
+
+	def set_shield(self, shield):
+		self.__shield = shield
+
+	def set_heat(self, heat):
+		self.__heat = heat
+
 	def is_overheated(self):
 		return self.__current_heat >= Player.MAX_HEAT
 
