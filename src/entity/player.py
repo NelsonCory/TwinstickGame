@@ -2,7 +2,7 @@ from . entity import *
 from core.event_manager import *
 from core.game import *
 from core.resource_manager import *
-from core.utils import *
+import math
 import pygame
 
 from entity import *

@@ -1,6 +1,5 @@
 from . entity import *
 from core.game import *
-from core.utils import Vec
 import math
 
 class Bullet(Entity):

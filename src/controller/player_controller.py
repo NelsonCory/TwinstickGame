@@ -1,6 +1,5 @@
 from . controller import *
 from core.event_manager import *
-from core.utils import *
 import pygame
 
 class PlayerController(Controller):
