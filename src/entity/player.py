@@ -10,7 +10,7 @@ from entity import *
 class Player(Entity):
 
 	MAX_HEAT = 100
-	MAX_SPEED = 500
+	MAX_SPEED = 200
 	ANALOG_STICK_THRESHOLD = 0.25
 
 	def __init__(self, id_, x, y):
