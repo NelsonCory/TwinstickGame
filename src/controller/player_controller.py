@@ -4,7 +4,6 @@ class PlayerController(Controller):
 	
 	#Note: Since gameplay is not assymetric, two objects of the same PlayerController class can be used to
 	#control both players. 
-	
 
 	def __init__(self,player_id = 0):
 		super(PlayerController,self).__init__()
