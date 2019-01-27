@@ -19,7 +19,7 @@ class ResourceManager:
 		self.load_music()
 
 		ResourceManager.__instance = self
-		
+
 	@staticmethod
 	def get_instance():
 		return ResourceManager.__instance
@@ -27,7 +27,7 @@ class ResourceManager:
 	def load_tiles(self):
 		t_id = 0
 		layer = 0
-		for file in os.listdir(self.__base_path + "graphics/tiles/"):
+		for file in sorted(os.listdir(self.__base_path + "graphics/tiles/")):
 			try:
 				file_dat = os.path.basename(file).split("_")
 				if int(file_dat[1]) > t_id:
@@ -46,7 +46,7 @@ class ResourceManager:
 
 	def load_entities(self):
 		e_id = 0
-		for file in os.listdir(self.__base_path +"graphics/entities/"):
+		for file in sorted(os.listdir(self.__base_path +"graphics/entities/")):
 			try:
 				file_dat = os.path.basename(file).split("_")
 				if int(file_dat[1]) > e_id:

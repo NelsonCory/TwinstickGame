@@ -20,7 +20,6 @@ class Bullet(Entity):
 		trail = self.__pos - self.__direction_vec * Bullet.BULLET_TRAIL_LENGTH
 		start = self.__pos.get_tuple()
 		end = trail.get_tuple()
-		print(start, end)
 		pygame.draw.line(surface, pygame.Color(255, 0, 0, 0), start, end, 3)
 
 	def update(self, dt):
