@@ -11,6 +11,8 @@ class TileMap:
 	def __init__(self):
 		self.__chunk = [[Tile() for _ in range(22)] for _ in range(40)]
 
+		self.__spawn_list = []
+
 		self.__frame = 0
 		self.init_map()
 		TileMap.__instance = self
@@ -32,6 +34,8 @@ class TileMap:
 			for y in range(22):
 				self.__chunk[x][y].load_tile(lines[z])
 				z += 1
+				if self.__chunk[x][y].get_spawn() > 0:
+					self.__spawn_list.append((x, y, tile.get_spawn()))
 
 	def save_map(self, path):
 		f = open(path, "w")
@@ -54,3 +58,6 @@ class TileMap:
 
 	def set_tile(self, x, y, tile):
 		self.__chunk[x][y] = tile
+
+	def get_spawn_list(self):
+		return self.__spawn_list
