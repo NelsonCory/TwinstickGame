@@ -2,6 +2,7 @@ from . entity import *
 from core.event_manager import *
 from core.game import *
 from core.resource_manager import *
+from map.tile_map import *
 import math
 import pygame
 
@@ -13,15 +14,18 @@ class Player(Entity):
 	MAX_SPEED = 500
 	ANALOG_STICK_THRESHOLD = 0.25
 
-	def __init__(self, id_, x, y):
+	spawn_list = None
+
+	def __init__(self, id_):
+		if Player.spawn_list == None:
+			Player.spawn_list = TileMap.get_instance().get_spawn_list()
 		self.__id = id_
 		self.__total_frames = ResourceManager.get_instance().get_entity_frames(self.__id)
 		self.__frame = 0
 		self.__hp = 100
 		self.__shield = 100
 		self.__current_heat = 0
-		self.__x = x
-		self.__y = y
+		self.__x, self.__y = Player.spawn_list.pop()[:2]
 		self.__velocity_x = 0
 		self.__velocity_y = 0
 		self.__speed = 0

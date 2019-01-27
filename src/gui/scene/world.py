@@ -12,7 +12,7 @@ class World(Scene):
 		super(World, self).__init__()
 		self.__bullets = []
 		self.__tilemap = TileMap()
-		self.__players = [Player(0, 96, 96), Player(1, 1184, 634)]
+		self.__players = [Player(0), Player(1)]
 		self.__hud = Hud()
 		self.__AlphaInput = PlayerController(0)
 		self.__BetaInput = PlayerController(1)
