@@ -8,6 +8,9 @@ from entity import *
 
 class Player(Entity):
 
+	MAX_HEAT = 100
+	MAX_SPEED = 500
+
 	def __init__(self, id_, x, y):
 		self.__id = id_
 		self.__total_frames = ResourceManager.get_instance().get_entity_frames(self.__id)
@@ -15,7 +18,6 @@ class Player(Entity):
 		self.__hp = 100
 		self.__shield = 100
 		self.__current_heat = 0
-		self.__MAX_HEAT = 100
 		self.__pos = Vec(x, y)
 		self.__direction = Vec(0, 1)
 		self.__speed = 0
