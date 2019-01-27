@@ -14,7 +14,7 @@ class World(Scene):
 		self.__bullets = []
 		self.__tilemap = TileMap()
 		self.__tilemap.load_map(os.path.dirname(sys.argv[0]) + "/res/maps/map.dat")
-		self.__players = [Player(0, 96, 96), Player(1, 1184, 634)]
+		self.__players = [Player(0), Player(1)]
 		self.__hud = Hud()
 		self.__AlphaInput = PlayerController(0)
 		self.__BetaInput = PlayerController(1)
