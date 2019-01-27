@@ -42,16 +42,16 @@ class Player(Entity):
 	def draw(self):
 		surface = get_game_instance().get_screen().get_surface()
 		surface.blit(ResourceManager.get_instance().get_entities(self.__id, self.__frame),
-				(self.__x, self.__y))	
-	
-				
+				(self.__x, self.__y))
+
+
 	def update(self, dt):
 
 		if self.__velocity_x*self.__velocity_x + self.__velocity_y*self.__velocity_y > Player.ANALOG_STICK_THRESHOLD*Player.ANALOG_STICK_THRESHOLD:
 			self.__speed = Player.MAX_SPEED
 		else:
 			self.__speed = 0
-		
+
 		# if(self.__anim_state == 0 and self.__speed == 0):
 			# self.set_frame(0)
 		# elif (self.__anim_state == 0 & self.__speed > 0):
@@ -65,7 +65,7 @@ class Player(Entity):
 		# else:
 			# pass
 		# print(self.__anim_state)
-		
+
 		norm = math.sqrt(self.__velocity_x*self.__velocity_x + self.__velocity_y*self.__velocity_y)
 		if norm > 1:
 			self.__velocity_x = self.__velocity_x / norm
@@ -77,30 +77,46 @@ class Player(Entity):
 		self.__y += dy
 
 	def check_collisions(self, dx, dy):
+		# Get the tile coordinates
 		tile_x = int(self.__x // 32)
 		tile_y = int(self.__y // 32)
+		rdx = dx
+		rdy = dy
+
+		# Iterate over every square around the current tile
 		for i in range(-1, 2):
 			for j in range(-1, 2):
-				if i == 0 and j == 0:
-					continue
+
+				# Skip out-of-range tiles
 				if tile_x + i < 0 or tile_x + i >= 40 or tile_y + j < 0 or tile_y + j >= 22:
 					continue
+
+				# Skip non-solid tiles
 				if not(TileMap.get_instance().get_tile(tile_x+i, tile_y+j).get_solid()):
 					continue
+
+				# Create rects for collision testing
 				test_rect_x = pygame.Rect(self.__x + dx, self.__y, 32, 32)
 				test_rect_y = pygame.Rect(self.__x, self.__y + dy, 32, 32)
 				tile_rect = pygame.Rect((tile_x + i)*32, (tile_y + j)*32, 32, 32)
+				player_rect = pygame.Rect(self.__x, self.__y, 32, 32)
+
+				# Collision corrections
 				if test_rect_x.colliderect(tile_rect):
 					if dx < 0:
-						dx = (tile_x+i+1)*32 - self.__x
+						rdx = tile_rect.right - player_rect.left
+					elif dx > 0:
+						rdx = tile_rect.left - player_rect.right
 					else:
-						dx = (tile_x+i)*32 - (self.__x+32)
+						rdx = 0
 				if test_rect_y.colliderect(tile_rect):
 					if dy < 0:
-						dy = (tile_y+i+1)*32 - self.__y
+						rdy = tile_rect.bottom - player_rect.top
+					elif dy > 0:
+						rdy = tile_rect.top - player_rect.bottom
 					else:
-						dy = (tile_y+i)*32 - (self.__y+32)
-		return dx, dy
+						rdy = 0
+		return rdx, rdy
 
 
 	def get_hp(self):
@@ -123,5 +139,5 @@ class Player(Entity):
 			self.__rotation_x = rot_x
 			self.__rotation_y = rot_y
 
-	
-	 
+
+
