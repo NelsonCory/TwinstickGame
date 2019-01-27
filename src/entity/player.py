@@ -49,7 +49,7 @@ class Player(Entity):
 				(self.__x, self.__y))
 
 	def update(self, dt):
-		
+
 		self.set_frame(1)
 
 		if self.__velocity_x*self.__velocity_x + self.__velocity_y*self.__velocity_y > Player.ANALOG_STICK_THRESHOLD*Player.ANALOG_STICK_THRESHOLD:
@@ -67,47 +67,47 @@ class Player(Entity):
 		self.__x += dx
 		self.__y += dy
 
+	def will_collide(self, tile_manager, test_rect, test_tile_x, test_tile_y):
+		for x in range(test_tile_x - 1, test_tile_x + 2):
+			for y in range(test_tile_y - 1, test_tile_y + 2):
+				tile_x = x*32
+				tile_y = y*32
+				tile_rect = pygame.Rect(tile_x, tile_y, 32, 32)
+				if tile_manager.get_tile(x, y).get_solid():
+					 if test_rect.colliderect(tile_rect):
+						 print("collide")
+						 return tile_rect
+
+		return None
+
 	def check_collisions(self, dx, dy):
 		# Get the tile coordinates
 		tile_x = int(self.__x // 32)
 		tile_y = int(self.__y // 32)
-		result_dx = dx
-		result_dy = dy
+		tm = TileMap.get_instance()
 
-		# Iterate over every square around the current tile
-		for i in range(-1, 2):
-			for j in range(-1, 2):
+		player_rect = pygame.Rect(self.__x, self.__y, 32, 32)
 
-				# Skip out-of-range tiles
-				if tile_x + i < 0 or tile_x + i >= 40 or tile_y + j < 0 or tile_y + j >= 22:
-					continue
+		test_rect_x = pygame.Rect(self.__x + dx, self.__y, 32, 32)
+		test_tile_x = self.will_collide(tm, test_rect_x, tile_x, tile_y)
+		if test_tile_x != None:
+			if dx < 0:
+				dx = test_tile_x.right - player_rect.left
+			elif dx > 0:
+				dx = test_tile_x.left - player_rect.right
+			else:
+				dx = 0
 
-				# Skip non-solid tiles
-				if not(TileMap.get_instance().get_tile(tile_x+i, tile_y+j).get_solid()):
-					continue
-
-				# Create rects for collision testing
-				test_rect_x = pygame.Rect(self.__x + dx, self.__y, 32, 32)
-				test_rect_y = pygame.Rect(self.__x, self.__y + dy, 32, 32)
-				tile_rect = pygame.Rect((tile_x + i)*32, (tile_y + j)*32, 32, 32)
-				player_rect = pygame.Rect(self.__x, self.__y, 32, 32)
-
-				# Collision corrections
-				if test_rect_x.colliderect(tile_rect):
-					if dx < 0:
-						result_dx = tile_rect.right - player_rect.left
-					elif dx > 0:
-						result_dx = tile_rect.left - player_rect.right
-					else:
-						result_dx = 0
-				if test_rect_y.colliderect(tile_rect):
-					if dy < 0:
-						result_dy = tile_rect.bottom - player_rect.top
-					elif dy > 0:
-						result_dy = tile_rect.top - player_rect.bottom
-					else:
-						result_dy = 0
-		return result_dx, result_dy
+		test_rect_y = pygame.Rect(self.__x, self.__y + dy, 32, 32)
+		test_tile_y = self.will_collide(tm, test_rect_y, tile_x, tile_y)
+		if test_tile_y != None:
+			if dy < 0:
+				dy = test_tile_y.bottom - player_rect.top
+			elif dy > 0:
+				dy = test_tile_y.top - player_rect.bottom
+			else:
+				dy = 0
+		return dx, dy
 
 
 	def get_hp(self):
@@ -129,4 +129,3 @@ class Player(Entity):
 		if rot_x*rot_x + rot_y*rot_y > Player.ANALOG_STICK_THRESHOLD*Player.ANALOG_STICK_THRESHOLD:
 			self.__rotation_x = rot_x
 			self.__rotation_y = rot_y
-
