@@ -20,7 +20,6 @@ class World(Scene):
 
 
 	def draw(self):
-
 		self.__game_screen = get_game_instance().get_screen()
 		self.__tilemap.draw(self.__game_screen)
 

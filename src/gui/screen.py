@@ -23,7 +23,7 @@ class Screen:
 	def draw(self):
 		self.__surface.fill((0, 0, 0))
 		self.__scene.draw()
-		pygame.display.flip()
+		pygame.display.update()
 
 	def update(self, dt):
 		self.__scene.update(dt)
