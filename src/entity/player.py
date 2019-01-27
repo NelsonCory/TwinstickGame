@@ -49,7 +49,7 @@ class Player(Entity):
 				(self.__x, self.__y))
 
 	def update(self, dt):
-		
+
 		self.set_frame(1)
 
 		if self.__velocity_x*self.__velocity_x + self.__velocity_y*self.__velocity_y > Player.ANALOG_STICK_THRESHOLD*Player.ANALOG_STICK_THRESHOLD:
@@ -71,8 +71,6 @@ class Player(Entity):
 		# Get the tile coordinates
 		tile_x = int(self.__x // 32)
 		tile_y = int(self.__y // 32)
-		result_dx = dx
-		result_dy = dy
 
 		# Iterate over every square around the current tile
 		for i in range(-1, 2):
@@ -95,19 +93,20 @@ class Player(Entity):
 				# Collision corrections
 				if test_rect_x.colliderect(tile_rect):
 					if dx < 0:
-						result_dx = tile_rect.right - player_rect.left
+						dx = tile_rect.right - player_rect.left
 					elif dx > 0:
-						result_dx = tile_rect.left - player_rect.right
+						dx = tile_rect.left - player_rect.right
 					else:
-						result_dx = 0
+						dx = 0
 				if test_rect_y.colliderect(tile_rect):
 					if dy < 0:
-						result_dy = tile_rect.bottom - player_rect.top
+						dy = tile_rect.bottom - player_rect.top
 					elif dy > 0:
-						result_dy = tile_rect.top - player_rect.bottom
+						dy = tile_rect.top - player_rect.bottom
 					else:
-						result_dy = 0
-		return result_dx, result_dy
+						dy = 0
+
+		return dx, dy
 
 
 	def get_hp(self):
@@ -118,6 +117,21 @@ class Player(Entity):
 
 	def get_heat(self):
 		return self.__current_heat
+
+	def get_position(self):
+		return self.__x, self.__y
+
+	def get_rotation(self):
+		return self.__rotation_x, self.__rotation_y
+
+	def set_hp(self, hp):
+		self.__hp = hp
+
+	def set_shield(self, shield):
+		self.__shield = shield
+
+	def set_heat(self, heat):
+		self.__heat = heat
 
 	def is_overheated(self):
 		return self.__current_heat >= Player.MAX_HEAT
