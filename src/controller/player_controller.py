@@ -66,4 +66,7 @@ class PlayerController(Controller):
 		move_y = self.__joystick.get_axis(1)
 		rot_x = self.__joystick.get_axis(3)
 		rot_y = self.__joystick.get_axis(4)
-		return move_x, move_y, rot_x, rot_y
+		if os.name == "posix":
+			return move_x, move_y, rot_x, rot_y
+		else:
+			return move_x, move_y, rot_y, rot_x

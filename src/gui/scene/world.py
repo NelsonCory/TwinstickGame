@@ -21,6 +21,7 @@ class World(Scene):
 		event_mgr = EventManager.get_instance()
 		event_mgr.subscribe("fire", self.on_fire)
 		event_mgr.subscribe("damage", self.on_damage)
+		event_mgr.subscribe("clean", self.on_clean)
 
 
 	def draw(self):
@@ -57,3 +58,6 @@ class World(Scene):
 		if player.get_hp() == 0:
 			EventManager.get_instance().send("death", player_id)
 			print("Killed player")
+
+	def on_clean(self, _):
+		self.__bullets = list(filter(lambda x: not(x.is_dead()), self.__bullets))

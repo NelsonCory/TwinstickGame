@@ -19,6 +19,7 @@ class Bullet(Entity):
 		self.__speed = Bullet.DEFAULT_BULLET_SPEED
 		self.__allegiance = allegiance
 		self.__color = Bullet.COLORS[allegiance]
+		self.__dead = False
 
 	def draw(self):
 		surface = get_game_instance().get_screen().get_surface()
@@ -36,8 +37,16 @@ class Bullet(Entity):
 	def check_enemy_collision(self):
 		enemy_id = (2 - self.__allegiance) % 2
 		enemy = get_game_instance().get_screen().get_scene().get_players()[enemy_id]
+		print(enemy.get_position())
 		enemy_rect = pygame.Rect(enemy.get_position(), (32, 32))
 		enemy_rect.collidepoint(self.__x, self.__y)
 		EventManager.get_instance().send("damage", enemy_id)
-		print("Hit player")
+		#self.die()
+
+	def die(self):
+		self.__dead = True
+		EventManager.get_instance().send("clean")
+
+	def is_dead(self):
+		return self.__dead
 
