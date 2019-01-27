@@ -5,6 +5,7 @@ from core.resource_manager import *
 from map.tile_map import *
 import math
 import pygame
+import time
 
 from entity import *
 
@@ -34,19 +35,37 @@ class Player(Entity):
 		self.__rotation_x = 0
 		self.__rotation_y = 1
 		self.__alive = True
+		#self.__anim_state = 0
 
 		EventManager.get_instance().subscribe(f"joystick{self.__id}_update", self.on_joystick_update)
 
 	def draw(self):
 		surface = get_game_instance().get_screen().get_surface()
 		surface.blit(ResourceManager.get_instance().get_entities(self.__id, self.__frame),
-				(self.__x, self.__y))
-
+				(self.__x, self.__y))	
+	
+				
 	def update(self, dt):
+
 		if self.__velocity_x*self.__velocity_x + self.__velocity_y*self.__velocity_y > Player.ANALOG_STICK_THRESHOLD*Player.ANALOG_STICK_THRESHOLD:
 			self.__speed = Player.MAX_SPEED
 		else:
 			self.__speed = 0
+		
+		# if(self.__anim_state == 0 and self.__speed == 0):
+			# self.set_frame(0)
+		# elif (self.__anim_state == 0 & self.__speed > 0):
+			# self.__anim_state = 0
+			# self.set_frame(1)
+		# elif (self.__anim_state == 1 & self.__speed == 0):
+			# self.__anim_state = 1
+			# self.set_frame(0)
+		# elif (self.__anim_state == 1 & self.__speed > 0):
+			# self.set_frame(1)
+		# else:
+			# pass
+		# print(self.__anim_state)
+		
 		norm = math.sqrt(self.__velocity_x*self.__velocity_x + self.__velocity_y*self.__velocity_y)
 		if norm > 1:
 			self.__velocity_x = self.__velocity_x / norm
@@ -101,3 +120,6 @@ class Player(Entity):
 		if rot_x*rot_x + rot_y*rot_y > Player.ANALOG_STICK_THRESHOLD*Player.ANALOG_STICK_THRESHOLD:
 			self.__rotation_x = rot_x
 			self.__rotation_y = rot_y
+
+	
+	 
