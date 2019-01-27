@@ -19,6 +19,11 @@ class Hud:
 			y = 680
 			pygame.draw.rect(surface, (0, 40, 150), (x+((4+14)*h1), y, 14, 9))
 
+		for h1 in range(self.__hp[0]):
+			x = 1153-100+10
+			y = 680
+			pygame.draw.rect(surface, (0, 40, 150), (x+((4+14)*h1), y, 14, 9))
+
 	def update(self, dt):
 		players = get_game_instance().get_screen().get_scene().get_players()
 		self.__hp = [player.get_hp() for player in players]
