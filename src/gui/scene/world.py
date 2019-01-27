@@ -12,7 +12,7 @@ class World(Scene):
 		super(World, self).__init__()
 		self.__bullets = []
 		#self.__tilemap = TileMap()
-		self.__players = [Player(), Player()]
+		self.__players = [Player(0, 96, 96), Player(1, 1184, 634)]
 		self.__hud = Hud()
 		EventManager.get_instance().subscribe('fire', self.on_fire)
 

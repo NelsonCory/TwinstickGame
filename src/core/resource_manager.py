@@ -45,7 +45,7 @@ class ResourceManager:
 				print("bad file format/incorrect path in tile load. File: " + file)
 
 	def load_entities(self):
-		e_id = 0
+		e_id = -1
 		for file in sorted(os.listdir(self.__base_path +"graphics/entities/")):
 			try:
 				file_dat = os.path.basename(file).split("_")
