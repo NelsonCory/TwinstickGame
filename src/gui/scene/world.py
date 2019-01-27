@@ -18,14 +18,16 @@ class World(Scene):
 		self.__BetaInput = PlayerController(1)
 		EventManager.get_instance().subscribe('fire', self.on_fire)
 
+
 	def draw(self):
-		#self.__tilemap.draw()
+	
+		self.__game_screen = get_game_instance().get_screen()
+		self.__tilemap.draw(self.__game_screen)
 		
 		for bullet in self.__bullets:
 			bullet.draw()
 		for player in self.__players:
 			player.draw()
-		
 		self.__hud.draw()
 
 	def update(self, dt):
