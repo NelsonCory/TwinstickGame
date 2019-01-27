@@ -1,3 +1,4 @@
+from core.event_manager import *
 from gui.scene.world import *
 import pygame
 
@@ -7,6 +8,7 @@ class Screen:
 		self.__resolution = resolution
 		self.__surface = pygame.display.set_mode(resolution)
 		self.__scene = World()
+		EventManager.get_instance().subscribe("death", self.on_death)
 
 	def blit(self, *args, **kwargs):
 		self.__surface.blit(*args, **kwargs)
@@ -44,3 +46,6 @@ class Screen:
 			del self.__scene
 		self.__scene = scene
 		self.__scene.ready()
+
+	def on_death(self, _):
+		self.__scene = World()
