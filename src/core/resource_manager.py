@@ -12,6 +12,7 @@ class ResourceManager:
 		self.__entities = [[]]
 		self.__music = {}
 		self.__effects = {}
+		self.__hud = []
 		self.load_tiles()
 		self.load_entities()
 		self.load_fonts()
@@ -82,6 +83,10 @@ class ResourceManager:
 				self.__sounds[key] = pygame.mixer.Sound(os.path.join(self.__base_path, "sounds/" + file))
 			except:
 				print("bad file format/incorrect path in effects load. File: " + file)
+
+	def load_hud(self):
+		for file in sorted(os.listdir(self.__base_path + "graphics/hud/"):
+			self.__hud.append(pygame.image.load(os.path.join(self.__base_path, "graphics/hud/" + file)))
 
 	#---------------------------------------------------------------------------tile accessors
 	def get_tile(self, t_id, layer, frame):
