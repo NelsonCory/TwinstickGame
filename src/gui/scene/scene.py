@@ -12,9 +12,9 @@ class Scene:
 	def update(self, dt):
 		pass
 
-	def clean():
+	def clean(self):
 		pass
 
-	def ready():
+	def ready(self):
 		pass
 

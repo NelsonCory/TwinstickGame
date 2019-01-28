@@ -43,6 +43,9 @@ class Player(Entity):
 
 		EventManager.get_instance().subscribe(f"joystick{self.__id}_update", self.on_joystick_update)
 
+	def clean(self):
+		EventManager.get_instance().unsubscribe(f"joystick{self.__id}_update", self.on_joystick_update)
+
 	def draw(self):
 		#print(self.get_frame())
 		#print(ResourceManager.get_instance().get_entity_frames(1))

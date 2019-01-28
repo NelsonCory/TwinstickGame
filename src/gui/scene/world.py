@@ -21,7 +21,7 @@ class World(Scene):
 		event_mgr = EventManager.get_instance()
 		event_mgr.subscribe("fire", self.on_fire)
 		event_mgr.subscribe("damage", self.on_damage)
-		event_mgr.subscribe("clean", self.on_clean)
+		event_mgr.subscribe("clean", self.remove_dead_bullets)
 
 
 	def draw(self):
@@ -44,6 +44,15 @@ class World(Scene):
 			player.update(dt)
 		self.__hud.update(dt)
 
+	def clean(self):
+		super(World, self).clean()
+		event_mgr = EventManager.get_instance()
+		event_mgr.unsubscribe("fire", self.on_fire)
+		event_mgr.unsubscribe("damage", self.on_damage)
+		event_mgr.unsubscribe("clean", self.remove_dead_bullets)
+		for player in self.__players:
+			player.clean()
+
 	def get_players(self):
 		return self.__players
 
@@ -59,5 +68,5 @@ class World(Scene):
 			EventManager.get_instance().send("death", player_id)
 			print("Killed player")
 
-	def on_clean(self, _):
+	def remove_dead_bullets(self, _):
 		self.__bullets = list(filter(lambda x: not(x.is_dead()), self.__bullets))
