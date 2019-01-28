@@ -36,7 +36,7 @@ class Bullet(Entity):
 		self.check_enemy_collision()
 		tile_x = int(self.__x // 32)
 		tile_y = int(self.__y // 32)
-		if (tile_x < 0 or tile_y < 0 or tile_x >= 40 or tile_y > 22 or TileMap.get_instance().get_tile(tile_x, tile_y).get_solid()):
+		if (tile_x < 0 or tile_y < 0 or tile_x >= 40 or tile_y >= 22 or TileMap.get_instance().get_tile(tile_x, tile_y).get_solid()):
 			self.die()
 
 	def check_enemy_collision(self):
