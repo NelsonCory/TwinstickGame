@@ -48,4 +48,4 @@ class Screen:
 		self.__scene.ready()
 
 	def on_death(self, _):
-		self.__scene = World()
+		self.set_scene(World())
