@@ -6,7 +6,7 @@ class Screen:
 
 	def __init__(self, resolution=(1280, 720)):
 		self.__resolution = resolution
-		self.__surface = pygame.display.set_mode(resolution)
+		self.__surface = pygame.display.set_mode(resolution, pygame.FULLSCREEN)
 		self.__scene = World()
 		EventManager.get_instance().subscribe("death", self.on_death)
 
