@@ -1,5 +1,11 @@
-# sb-hackmt2019
-HackMT 2019 project by Sandbox student organization.
+# Twinstick Game
+A competitive 2D twinstick shooter developed with Pygame. This project was developed by members of Sandbox at HackMT 2019.
+
+## How to Play
+This game requires two gamepads in order to play.
+
+## How to Run
+This game requires Python 3 to be installed. If python installed, execute run.bat. 
 
 ## Contributors
 Raine Taylor - Programming, Music<br>
