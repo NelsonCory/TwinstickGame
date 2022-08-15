@@ -1,5 +1,5 @@
 # Twinstick Game
-A competitive 2D twinstick shooter developed with Pygame. This project was developed by members of Sandbox at HackMT 2019.
+A competitive twinstick shooter developed with Pygame. This project was developed by members of Sandbox at HackMT 2019.
 
 ## How to Play
 This game requires two gamepads in order to play.
