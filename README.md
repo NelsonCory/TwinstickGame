@@ -5,7 +5,7 @@ A competitive 2D twinstick shooter developed with Pygame. This project was devel
 This game requires two gamepads in order to play.
 
 ## How to Run
-This game requires Python 3 to be installed. If python installed, execute run.bat. 
+This game requires Python 3 to be installed. If python is installed, execute run.bat. 
 
 ## Contributors
 Raine Taylor - Programming, Music<br>
